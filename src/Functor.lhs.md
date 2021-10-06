@@ -130,10 +130,14 @@ Laws
 
 - A functor must satisfy the following laws:
 
-$$
-\text{fmap id} = \text{id}\\
-\text{fmap (f . g)} = \text{(fmap f) . (fmap g)}
-$$
+<!-- $$
+\begin{aligned}
+\text{fmap id} &= \text{id}\\
+\text{fmap (f . g)} &= \text{(fmap f) . (fmap g)}
+\end{aligned}
+$$ --> 
+
+<div align="center"><img style="background: white;" src="../svg/2fH9oF2kzB.svg"></div>
 
 - A `Functor` instance that does not satisfy the functor laws:
 
@@ -161,12 +165,16 @@ Give an example of a (bogus) `Functor` instance which satisfies the second law b
 
 This functor instance does not satisfy the first functor law, as `fmap id (Just x) == Nothing != Just x == id (Just x)`, but it satisfies the second functor law because
 
-$$
+<!-- $$
+\begin{aligned}
 \text{(fmap f $\circ$ fmap g) x}
-\equiv \text{fmap f Nothing}\\
-\equiv \text{Nothing}\\
-\equiv \text{fmap (f . g) x}
-$$
+&\equiv \text{fmap f Nothing}\\
+&\equiv \text{Nothing}\\
+&\equiv \text{fmap (f . g) x}
+\end{aligned}
+$$ --> 
+
+<div align="center"><img style="background: white;" src="../svg/lAfZh4whUb.svg"></div>
 
 {*Question 2*}  
 Which laws are violated by the evil Functor instance for list shown above: both laws, or the first law alone?
@@ -175,14 +183,20 @@ Give specific counterexamples.
 ---
 
 The first law is violated; take for example a list `[1]`. This implementation of fmap produces `fmap id [1] == id 1 : id 1 : [] == [1,1]`, so the original value to be mapped over is not preserved when mapping the identity function onto it. The second law is also violated; take as a counterexample `[1]`, with functions `f = (+1)` and `g = (*2)`. Then
-      (fmap f . fmap g) [1]
-   == (fmap (+1) . fmap (*2)) [1]
-   == fmap (+1) [2, 2]
-   == [3, 3, 3, 3]
-   != [3, 3]
-   == fmap ((+1) . (*2)) [1]
-   == fmap (f . g) [1]
--}
+
+<!-- $$
+\begin{aligned}
+\text{(fmap f . fmap g) [1]}
+&\equiv \text{(fmap (+1) . fmap (*2)) [1]}\\
+&\equiv \text{fmap (+1) [2, 2]}\\
+&\equiv \text{[3, 3, 3, 3]}\\
+&\not\equiv \text{[3, 3]}\\
+&\equiv \text{fmap ((+1) . (*2)) [1]}\\
+&\equiv \text{fmap (f . g) [1]}
+\end{aligned}
+$$ --> 
+
+<div align="center"><img style="background: white;" src="../svg/qDh19O3pXa.svg"></div>
 
 
 Intuition
