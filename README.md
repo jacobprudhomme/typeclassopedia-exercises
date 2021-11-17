@@ -6,6 +6,7 @@ I have written up the notes and solutions I made following the Haskell Typeclass
 ## Sections
 
 * [Functor](doc/Functor.md)
+* [Applicative](doc/Applicative.md)
 
 
 ## Requirements
