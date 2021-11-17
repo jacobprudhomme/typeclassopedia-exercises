@@ -111,7 +111,7 @@ If false, give a counterexample; if true, prove it by exhibiting some appropriat
 
 > newtype FunctorComposition f g a = FunctorComposition (f (g a))
 > 
-> instance (Functor f, Functor g) => Functor (FunctorComposition f g) > where
+> instance (Functor f, Functor g) => Functor (FunctorComposition f g) where
 >   fmap f (FunctorComposition x) = FunctorComposition $ fmap (fmap f) x
 
 Since a functor can be thought of as a "container" for a type, then to
