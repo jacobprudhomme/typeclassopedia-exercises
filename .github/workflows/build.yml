@@ -23,6 +23,14 @@ jobs:
           path: ${{ steps.install-ghc-cabal.outputs.cabal-store }}
           key: ${{ runner.os }}-cabal-store
 
+      - name: See what the Cabal install directory looks like
+        run: |
+          echo ${{ steps.install-ghc-cabal.outputs.cabal-path }}
+          echo ${{ steps.install-ghc-cabal.outputs.cabal-exe }}
+
+      - name: Add Cabal install directory to PATH
+        run: echo "$HOME/.cabal/bin" >> $GITHUB_PATH
+
       - name: Show PATH
         run: echo $PATH
 
