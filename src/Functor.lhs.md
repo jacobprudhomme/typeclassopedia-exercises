@@ -4,6 +4,10 @@ Functor
 > {-# LANGUAGE InstanceSigs #-}
 > 
 > import Prelude hiding (Functor(..))
+> 
+> -- Needed for compilation
+> main :: IO ()
+> main = return ()
 
 
 Definition
