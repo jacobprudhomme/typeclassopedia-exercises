@@ -27,4 +27,6 @@ jobs:
         run: |
           cabal update
           cabal install pandoc-2.16.1 markdown-unlit-0.5.1
-          ./build.sh
+
+      - name: Run build
+        run: ./build.sh

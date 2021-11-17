@@ -6,7 +6,7 @@ set -eo pipefail
 echo "Converting Literate Haskell to Markdown"
 mkdir -p doc
 for FILENAME in src/*.lhs; do
-  pandoc "$FILENAME" -f markdown+lhs -t gfm -o "doc/$(basename "$FILENAME" .lhs).md"
+  cabal exec pandoc -- "$FILENAME" -f markdown+lhs -t gfm -o "doc/$(basename "$FILENAME" .lhs).md"
 done
 
 echo "Creating compilable copy of output"
@@ -17,6 +17,6 @@ done
 
 echo "Testing code segments to see if they typecheck"
 for FILENAME in build/*.lhs; do
-  ghc -pgmL markdown-unlit "$FILENAME"
+  cabal exec ghc -- -pgmL markdown-unlit "$FILENAME"
 done
 rm -rf build
