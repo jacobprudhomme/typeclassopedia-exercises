@@ -33,3 +33,11 @@ jobs:
 
       - name: Run build
         run: ./build.sh
+
+      - name: Commit and push output chapters
+        run: |
+          git commit --global user.name "Jacob Prud'homme"
+          git commit --global user.email "jacobprudhomme@users.noreply.github.com"
+          git add ./doc
+          git commit -m "Built chapter $(echo ${GITHUB_REF##*/} | sed -r 's/(^|_)([a-z])/\U\2/g')"
+          git push
