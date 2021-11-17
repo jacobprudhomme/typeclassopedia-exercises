@@ -1,5 +1,5 @@
-Functor
-=======
+`Functor`
+=========
 
 > {-# LANGUAGE InstanceSigs #-}
 > 
@@ -52,7 +52,7 @@ Data types needed for some of the exercises:
 **Exercises**
 
 {*Question 1*}  
-Implement Functor instances for `(Either e)` and `((->) e)`.
+Implement `Functor` instances for `(Either e)` and `((->) e)`.
 
 ---
 
@@ -66,7 +66,7 @@ Implement Functor instances for `(Either e)` and `((->) e)`.
 >   fmap f g = f . g
 
 {*Question 2*}  
-Implement Functor instances for `((,) e)` and `Pair`. Explain their similarities and differences.
+Implement `Functor` instances for `((,) e)` and `Pair`. Explain their similarities and differences.
 
 ---
 
@@ -81,7 +81,7 @@ Implement Functor instances for `((,) e)` and `Pair`. Explain their similarities
 `((,) e)` and `Pair` are similar in that they are both type constructors that take 1 argument, and
 they both represent pairs of elements. However, with the former, the argument doesn't have to be
 the same type as the type variable `e`, whereas with the latter, both elements must be of the same
-type. Additionally, since the type variable `e` is part of the Functor instance for `((,) e)`, it
+type. Additionally, since the type variable `e` is part of the `Functor` instance for `((,) e)`, it
 cannot change type, so only the second element in the tuple can have the function applied to it.
 With `Pair`, both elements must have the function applied to them, because we cannot have a
 `Pair` with elements of two different types.
@@ -167,7 +167,7 @@ Give an example of a (bogus) `Functor` instance which satisfies the second law b
 >   fmap :: (a -> b) -> Optional a -> Optional b
 >   fmap _ _ = None
 
-This functor instance does not satisfy the first functor law, as `fmap id (Just x) == Nothing != Just x == id (Just x)`, but it satisfies the second functor law because
+This `Functor` instance does not satisfy the first functor law, as `fmap id (Just x) == Nothing != Just x == id (Just x)`, but it satisfies the second functor law because
 
 <!-- $$
 \begin{aligned}
@@ -181,7 +181,7 @@ $$ -->
 <div align="center"><img style="background: white;" src="../svg/lAfZh4whUb.svg"></div>
 
 {*Question 2*}  
-Which laws are violated by the evil Functor instance for list shown above: both laws, or the first law alone?
+Which laws are violated by the evil `Functor` instance for list shown above: both laws, or the first law alone?
 Give specific counterexamples.
 
 ---

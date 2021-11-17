@@ -1,8 +1,5 @@
 name: Build
-on:
-  pull_request:
-    branches:
-      - main
+on: pull_request
 
 jobs:
   build:
@@ -25,6 +22,9 @@ jobs:
         with:
           path: ${{ steps.install-ghc-cabal.outputs.cabal-store }}
           key: ${{ runner.os }}-cabal-store
+
+      - name: Add Cabal install directory to PATH
+        run: echo "$HOME/.cabal/bin" >> $GITHUB_PATH
 
       - name: Install dependencies
         run: |

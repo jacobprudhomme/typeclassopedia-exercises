@@ -3,18 +3,20 @@
 # Fail on error and don't mask errors in sequences of pipes
 set -eo pipefail
 
-# Name of the Typeclassopedia chapter completed in this PR, in PascalCase
-CHAPTER=$(echo ${GITHUB_REF##*/} | sed -r 's/(^|_)([a-z])/\U\2/g')
-echo "Executing build for chapter $CHAPTER"
-
 echo "Converting Literate Haskell to Markdown"
 mkdir -p doc
-pandoc "src/$CHAPTER.lhs.md" -f markdown+lhs -t gfm -o "doc/$CHAPTER.md"
+for FILENAME in src/*.lhs; do
+  pandoc "$FILENAME" -f markdown+lhs -t gfm -o "doc/$(basename "$FILENAME" .lhs).md"
+done
 
 echo "Creating compilable copy of output"
 mkdir -p build
-cp "doc/$CHAPTER.md" "build/$CHAPTER.lhs"
+for FILENAME in doc/*.md; do
+  cp "$FILENAME" "build/$(basename "$FILENAME" .md).lhs"
+done
 
 echo "Testing code segments to see if they typecheck"
-ghc -pgmL markdown-unlit "build/$CHAPTER.lhs"
+for FILENAME in build/*.lhs; do
+  ghc -pgmL markdown-unlit "$FILENAME"
+done
 rm -rf build
