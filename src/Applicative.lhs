@@ -232,7 +232,7 @@ There is a generalized version of this, `sequenceA`, which works for any `Traver
 Alternate Form
 --------------
 
-- Equivalent way of defining applicative, as (lax) monoidal functor:
+- Equivalent way of encoding applicative functor, as (lax) monoidal functor:
 
 > class Functor f => Monoidal f where
 >   unit :: f ()
