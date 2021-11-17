@@ -198,11 +198,13 @@ Intuition
   - Can also embed non-effectful arguments in the middle: `f <$> x1 <*> pure x2 <*> ... <*> xn`
   - As of GHC 8, can write applicative style using `ApplicativeDo` extension:
 
-< do v1 <- x1
-<    v2 <- x2
-<   ...
-<    vn <- xn
-<    pure $ f v1 v2 .. vn
+> {-
+> do v1 <- x1
+>    v2 <- x2
+>   ...
+>    vn <- xn
+>    pure $ f v1 v2 .. vn
+> -}
 
 
 Utility Functions
@@ -242,8 +244,10 @@ Alternate Form
   - Idea: `f` preserves "monoidal structure" of default type `()` and combining type constructor `(,)`
   - Can be more clearly seen if rewritten as follows:
 
-< unit :: () -> f ()
-< (**) :: (f a, f b) -> f (a, b)
+> {-
+> unit :: () -> f ()
+> (**) :: (f a, f b) -> f (a, b)
+> -}
 
 - Monoidal laws, which are simpler than those of applicatives:
 
