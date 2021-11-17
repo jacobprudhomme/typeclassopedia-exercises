@@ -1,0 +1,35 @@
+name: Build
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install GHC and Cabal
+        id: install-ghc-cabal
+        uses: haskell/actions/setup@v1
+        with:
+          ghc-version: '8.10.7'
+          cabal-version: '3.6.2.0'
+
+      - name: Cache Cabal store
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.install-ghc-cabal.outputs.cabal-store }}
+          key: ${{ runner.os }}-cabal-store
+
+      - name: Install dependencies
+        run: |
+          cabal update
+          cabal install pandoc-2.16.1 markdown-unlit-0.5.1
+
+      - name: Run build
+        run: ./build.sh
