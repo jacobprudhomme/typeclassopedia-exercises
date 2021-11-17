@@ -341,36 +341,40 @@ $$ -->
 <div align="center"><img style="background: white;" src="../svg/UjrsvgrObb.svg"></div>
 
 - Proving (right identity):
-$$
+<!-- $$
 \begin{aligned}
-u ** unit
-== (,) <$> u <*> pure ()
-== pure (,) <*> u <*> pure () [Canonical form]
-== (pure (,) <*> u) <*> pure ()
-== pure ($ ()) <*> pure (,) <*> u [Interchange]
-== pure (($ ()) (,)) <*> u [Homomorphism]
-== pure ((,) ()) <*> u
-== pure ((), u)
-~= u
+\text{u ** unit}
+&\equiv \text{(,) <$> u <*> pure ()}\\
+&\equiv \text{pure (,) <*> u <*> pure ()} && \text{changing to canonical form}\\
+&\equiv \text{(pure (,) <*> u) <*> pure ()}\\
+&\equiv \text{pure ($ ()) <*> pure (,) <*> u} && \text{(interchange)}\\
+&\equiv \text{pure (($ ()) (,)) <*> u} && \text{(homomorphism)}\\
+&\equiv \text{pure ((,) ()) <*> u}\\
+&\equiv \text{pure ((), u)}\\
+&\cong \text{u}
 \end{aligned}
-$$
+$$ --> 
+
+<div align="center"><img style="background: white;" src="../svg/AUjuk7nmSS.svg"></div>
 
 - Proving (associativity):
-$$
+<!-- $$
 \begin{aligned}
-u ** (v ** w)
-== (,) <$> u <*> (v ** w)
-== (,) <$> u <*> ((,) <$> v <*> w)
-== pure (,) <*> u <*> (pure (,) <*> v <*> w) [Canonical form]
-== pure (,) <*> u <*> pure (v, w)
-== (u, (v, w))
-~= ((u, v), w)
-== pure (,) <*> (pure (,) <*> u <*> v) <*> w
-== (,) <$> ((,) <$> u <*> v) <*> w [Reverse canonical form]
-== (,) <$> (u ** v) <*> w
-== (u ** v) ** w
+\text{u ** (v ** w)}
+&\equiv \text{(,) <$> u <*> (v ** w)}\\
+&\equiv \text{(,) <$> u <*> ((,) <$> v <*> w)}\\
+&\equiv \text{pure (,) <*> u <*> (pure (,) <*> v <*> w)} && \text{changing to canonical form}\\
+&\equiv \text{pure (,) <*> u <*> pure (v, w)}\\
+&\equiv \text{(u, (v, w))}\\
+&\cong \text{((u, v), w)}\\
+&\equiv \text{pure (,) <*> (pure (,) <*> u <*> v) <*> w}\\
+&\equiv \text{(,) <$> ((,) <$> u <*> v) <*> w} && \text{reversing canonical form}\\
+&\equiv \text{(,) <$> (u ** v) <*> w}\\
+&\equiv \text{(u ** v) ** w}
 \end{aligned}
-$$
+$$ --> 
+
+<div align="center"><img style="background: white;" src="../svg/MLLUgiAkHr.svg"></div>
 
 <!-- $(\impliedby)$ --> <img style="transform: translateY(0.1em); background: white;" src="../svg/49KpVWi18S.svg"> Assume monoidal functor laws hold:
 
@@ -379,62 +383,70 @@ $$
 3. `u ** (v ** w) ~= (u ** v) ** w`.
 
 - Proving (identity):
-$$
+<!-- $$
 \begin{aligned}
-pure id <*> v
-== fmap (uncurry ($)) (pure id ** v)
-== fmap (\(f,x) -> f x) (pure id ** v)
-== fmap (\(f,x) -> f x) (pure (id, v')), where v' is an "unwrapped" version of v
-== pure ((\(f,x) -> f x) (id, v'))
-== pure (id v')
-== pure v'
-== v
+\text{pure id <*> v}
+&\equiv \text{fmap (uncurry ($)) (pure id ** v)}\\
+&\equiv \text{fmap (\(f,x) -> f x) (pure id ** v)}\\
+&\equiv \text{fmap (\(f,x) -> f x) (pure (id, v'))}, && \text{where v' is an "unwrapped" version of v}\\
+&\equiv \text{pure ((\(f,x) -> f x) (id, v'))}\\
+&\equiv \text{pure (id v')}\\
+&\equiv \text{pure v'}\\
+&\equiv \text{v}
 \end{aligned}
-$$
+$$ --> 
+
+<div align="center"><img style="background: white;" src="../svg/swdR5Hlv1Y.svg"></div>
 
 - Proving (homomorphism):
-$$
+<!-- $$
 \begin{aligned}
-pure f <*> pure x
-== fmap (uncurry ($)) (pure f ** pure x)
-== fmap (\(f,x) -> f x) (pure f ** pure x)
-== fmap (\(f,x) -> f x) (pure (f, x))
-== pure ((\(f,x) -> f x) (f, x))
-== pure (f x)
+\text{pure f <*> pure x}
+&\equiv \text{fmap (uncurry ($)) (pure f ** pure x)}\\
+&\equiv \text{fmap (\(f,x) -> f x) (pure f ** pure x)}\\
+&\equiv \text{fmap (\(f,x) -> f x) (pure (f, x))}\\
+&\equiv \text{pure ((\(f,x) -> f x) (f, x))}\\
+&\equiv \text{pure (f x)}
 \end{aligned}
-$$
+$$ --> 
+
+<div align="center"><img style="background: white;" src="../svg/U07NHImpbG.svg"></div>
 
 - Proving (interchange):
-$$
+<!-- $$
 \begin{aligned}
-u <*> pure y
-== fmap (uncurry ($)) (u ** pure y)
-== fmap (\(f,x) -> f x) (u ** pure y)
-== fmap (\(f,x) -> f x) (pure (u', y)), where u' is an "unwrapped" version of u
-== pure ((\(f,x) -> f x) (u', y))
-== pure (u' y)
-== pure (($ y) u')
-== pure ((\(f,x) -> f x) (($ y), u'))
-== fmap (\(f,x) -> f x) (pure (($ y), u'))
-== fmap (\(f,x) -> f x) (pure ($ y) ** u)
-== fmap (uncurry ($)) (pure ($ y) ** u)
-== pure ($ y) <*> u
+\text{u <*> pure y}
+&\equiv \text{fmap (uncurry ($)) (u ** pure y)}\\
+&\equiv \text{fmap (\(f,x) -> f x) (u ** pure y)}\\
+&\equiv \text{fmap (\(f,x) -> f x) (pure (u', y))}, && \text{where u' is an "unwrapped" version of u}\\
+&\equiv \text{pure ((\(f,x) -> f x) (u', y))}\\
+&\equiv \text{pure (u' y)}\\
+&\equiv \text{pure (($ y) u')}\\
+&\equiv \text{pure ((\(f,x) -> f x) (($ y), u'))}\\
+&\equiv \text{fmap (\(f,x) -> f x) (pure (($ y), u'))}\\
+&\equiv \text{fmap (\(f,x) -> f x) (pure ($ y) ** u)}\\
+&\equiv \text{fmap (uncurry ($)) (pure ($ y) ** u)}\\
+&\equiv \text{pure ($ y) <*> u}
 \end{aligned}
-$$
+$$ --> 
+
+<div align="center"><img style="background: white;" src="../svg/PLvLa5oSv4.svg"></div>
 
 - Proving (composition):
-$$
+<!-- $$
 \begin{aligned}
-u <*> (v <*> w)
-== u <*> (fmap (uncurry ($)) (v ** w))
-== fmap (uncurry ($)) (u ** (fmap (uncurry ($)) (v ** w)))
-== fmap (\(f,x) -> f x) (u ** (fmap (\(f,x) -> f x) (v ** w)))
-== fmap (\(f,x) -> f x) (u ** (fmap (\(f,x) -> f x) (pure (v', w')))), where v', w' are "unwrapped" versions of v, w
-== fmap (\(f,x) -> f x) (u ** (pure ((\(f,x) -> f x) (v', w'))))
-== fmap (\(f,x) -> f x) (u ** (pure (v' w')))
-== fmap (\(f,x) -> f x) (pure (u', v' w')), where u' is an "unwrapped" version of u
-== pure ((\(f,x) -> f x) (u', v' w'))
-== pure (u' (v' w'))
-== pure (.) <*> u <*> v <*> w
+\text{u <*> (v <*> w)}
+&\equiv \text{u <*> (fmap (uncurry ($)) (v ** w))}\\
+&\equiv \text{fmap (uncurry ($)) (u ** (fmap (uncurry ($)) (v ** w)))}\\
+&\equiv \text{fmap (\(f,x) -> f x) (u ** (fmap (\(f,x) -> f x) (v ** w)))}\\
+&\equiv \text{fmap (\(f,x) -> f x) (u ** (fmap (\(f,x) -> f x) (pure (v', w'))))}, && \text{where v', w' are "unwrapped" versions of v, w}\\
+&\equiv \text{fmap (\(f,x) -> f x) (u ** (pure ((\(f,x) -> f x) (v', w'))))}\\
+&\equiv \text{fmap (\(f,x) -> f x) (u ** (pure (v' w')))}\\
+&\equiv \text{fmap (\(f,x) -> f x) (pure (u', v' w'))}, && \text{where u' is an "unwrapped" version of u}\\
+&\equiv \text{pure ((\(f,x) -> f x) (u', v' w'))}\\
+&\equiv \text{pure (u' (v' w'))}\\
+&\equiv \text{pure (.) <*> u <*> v <*> w}
 \end{aligned}
-$$
+$$ --> 
+
+<div align="center"><img style="background: white;" src="../svg/z9UgKSatpP.svg"></div>
