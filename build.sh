@@ -8,6 +8,7 @@ CHAPTER=$(echo ${GITHUB_REF##*/} | sed -r 's/(^|_)([a-z])/\U\2/g')
 echo "Executing build for chapter $CHAPTER"
 
 echo "Converting Literate Haskell to Markdown"
+mkdir -p doc
 pandoc "src/$CHAPTER.lhs.md" -f markdown+lhs -t gfm -o "doc/$CHAPTER.md"
 
 echo "Creating compilable copy of output"
