@@ -23,7 +23,10 @@ jobs:
           path: ${{ steps.install-ghc-cabal.outputs.cabal-store }}
           key: ${{ runner.os }}-cabal-store
 
-      - name: Install dependencies and run build
+      - name: Show PATH
+        run: echo $PATH
+
+      - name: Install dependencies
         run: |
           cabal update
           cabal install pandoc-2.16.1 markdown-unlit-0.5.1
