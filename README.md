@@ -21,3 +21,8 @@ I have written up the notes and solutions I made following the Haskell Typeclass
 * Use `pandoc src/<filename>.lhs.md -f markdown+lhs -t gfm -o doc/<filename>.md` to get output Markdown
 * Copy the above output file to have new extension `.lhs` (I create a `build` folder that I copy this file to)
 * Run Haskell code fragments using `ghc -pgmL markdown-unlit <wherever you copied to>/<filename>.lhs`. If it compiles, your code typechecks!
+
+
+## NOTE
+
+Markdown syntax highlighting seems quite a bit better than the Literate Haskell one (it technically doesn't support writing literate files in Markdown), so I recommend setting `*.lhs` files to use the Markdown language association for the workspace. It also allows for conveniences, such as using the rendered preview offered by the Markdown All in One extension.
