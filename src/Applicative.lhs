@@ -323,7 +323,9 @@ Prove that given your implementations from the first exercise, the usual applica
 
 (Forward direction)
 
-<!-- $(\implies)$ --> <img style="transform: translateY(0.1em); background: white;" src="../svg/vZGEoRoFHr.svg"> Assume applicative laws hold:
+<!-- $
+(\implies)
+$ --> <img style="transform: translateY(0.1em); background: white;" src="../svg/vZGEoRoFHr.svg"> Assume applicative laws hold:
 
 1. `pure id <*> v = v`
 2. `pure f <*> pure x = pure (f x)`
@@ -380,7 +382,9 @@ $$ -->
 
 <div align="center"><img style="background: white;" src="../svg/MLLUgiAkHr.svg"></div>
 
-<!-- $(\impliedby)$ --> <img style="transform: translateY(0.1em); background: white;" src="../svg/49KpVWi18S.svg"> Assume monoidal functor laws hold:
+<!-- $
+(\impliedby)
+$ --> <img style="transform: translateY(0.1em); background: white;" src="../svg/49KpVWi18S.svg"> Assume monoidal functor laws hold:
 
 1. `unit ** v ~= v`
 2. `u ** unit ~= u`
