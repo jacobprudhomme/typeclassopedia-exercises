@@ -68,7 +68,7 @@ $$ -->
 
 <div align="center"><img style="background: white;" src="../svg/m6hay89nlK.svg"></div>
 
-i.e. mapping a pure function `g` over a context is the same as injecting said function in a context and 'ap'-ing it.
+  - i.e. mapping a pure function `g` over a context is the same as injecting said function in a context and `ap`-ing it.
 
 
 **Exercises**
