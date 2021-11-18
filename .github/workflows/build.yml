@@ -40,6 +40,4 @@ jobs:
           git config user.email "github-actions-bot@github.com"
           git add ./doc
           git commit -m "Built chapter $(echo ${GITHUB_REF##*/} | sed -r 's/(^|_)([a-z])/\U\2/g')"
-          git push origin HEAD:"$BRANCH_NAME"
-        env:
-          BRANCH_NAME: ${GITHUB_REF##*/}
+          git push origin HEAD:"${GITHUB_REF##*/}"
