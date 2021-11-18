@@ -73,7 +73,7 @@ $$ -->
 
 **Exercises**
 
-{*Question 1*}
+{*Question 1*}  
 One might imagine a variant of the interchange law that says something about applying a pure function to an effectful argument.  
 Using the above laws, prove that `pure f <*> x == pure (flip ($)) <*> x <*> pure f`.
 
@@ -168,7 +168,7 @@ Instances
 
 **Exercises**
 
-{*Question 1*}
+{*Question 1*}  
 Implement an instance of `Applicative` for `Maybe`.
 
 ---
@@ -181,7 +181,7 @@ Implement an instance of `Applicative` for `Maybe`.
 >   (Just f) <*> (Just x) = Just (f x)
 >   _ <*> _ = Nothing
 
-{*Question 2*}
+{*Question 2*}  
 Determine the correct definition of `pure` for the `ZipList` instance of `Applicative`.  
 There is only one implementation that satisfies the law relating `pure` and `(<*>)`.
 
@@ -222,7 +222,7 @@ Utility Functions
 
 **Exercises**
 
-{*Question 1*}
+{*Question 1*}  
 Implement a function `sequenceAL :: Applicative f => [f a] -> f [a]`.  
 There is a generalized version of this, `sequenceA`, which works for any `Traversable`, but implementing this version specialized to lists is a good exercise.
 
@@ -269,7 +269,7 @@ where `g *** h = \(x,y) -> (g x, h y)` and <!-- $\cong$ --> <img style="transfor
 
 **Exercises**
 
-{*Question 1*}
+{*Question 1*}  
 Implement `pure` and `(<*>)` in terms of `unit` and `(**)`, and vice versa.
 
 ---
@@ -286,7 +286,7 @@ Implement `pure` and `(<*>)` in terms of `unit` and `(**)`, and vice versa.
 > (**>) :: (Applicative f, Monoidal f) => f a -> f b -> f (a,b)
 > x **> y = (,) <$> x <*> y
 
-{*Question 2*}
+{*Question 2*}  
 Are there any `Applicative` instances for which there are also functions `f () -> ()` and `f (a,b) -> (f a, f b)`, satisfying some "reasonable" laws?
 
 ---
@@ -316,7 +316,7 @@ $$ -->
 
 <div align="center"><img style="background: white;" src="../svg/VCE2gnTevH.svg"></div>
 
-{*Question 3*}
+{*Question 3*}  
 Prove that given your implementations from the first exercise, the usual applicative laws and the monoidal laws stated above are equivalent.
 
 ---

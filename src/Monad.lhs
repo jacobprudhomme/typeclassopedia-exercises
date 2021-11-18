@@ -128,7 +128,7 @@ Instances
 
 **Exercises**
 
-{*Question 1*}
+{*Question 1*}  
 Implement a `Monad` instance for the list constructor, `[]`.
 
 ---
@@ -141,7 +141,7 @@ Implement a `Monad` instance for the list constructor, `[]`.
 >   [] >>= _ = []
 >   xs >>= f = concat [ f x | x <- xs ]
 
-{*Question 2*}
+{*Question 2*}  
 Implement a `Monad` instance for `((->) e)`.
 
 ---
@@ -153,7 +153,7 @@ Implement a `Monad` instance for `((->) e)`.
 >   (>>=) :: (e -> a) -> (a -> (e -> b)) -> (e -> b)
 >   f >>= ff = \e -> ff (f e) e
 
-{*Question 3*}
+{*Question 3*}  
 Implement `Functor` and `Monad` instances for `Free f`, defined as
 
 > data Free f a
@@ -213,7 +213,7 @@ Intuition
 
 **Exercises**
 
-{*Question 1*}
+{*Question 1*}  
 Implement `(>>=)` in terms of `fmap` (or `liftM`) and `join`.
 
 ---
@@ -221,7 +221,7 @@ Implement `(>>=)` in terms of `fmap` (or `liftM`) and `join`.
 > (>>=>) :: Monad m => m a -> (a -> m b) -> m b
 > x >>=> f = join' (fmap f x)
 
-{*Question 2*}
+{*Question 2*}  
 Implement `join` and `fmap` (`liftM`) in terms of `(>>=)` and `return`.
 
 ---
@@ -291,7 +291,7 @@ $$ -->
 
 **Exercises**
 
-{*Question 1*}
+{*Question 1*}  
 Given the definition `g >=> h == \x -> g x >>= h`, prove the equivalence of the above laws and the usual monad laws.
 
 ---
