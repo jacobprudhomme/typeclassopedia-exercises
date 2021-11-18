@@ -8,7 +8,7 @@
 >
 > -- Needed for compilation
 > main :: IO ()
-> main = return ()
+> main = pure () -- Cannot use return yet!
 
 
 Definition
