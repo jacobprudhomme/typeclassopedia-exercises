@@ -1,5 +1,13 @@
 Monad Transformers
-====================
+==================
+
+> {-# LANGUAGE FlexibleContexts #-}
+>
+> import Control.Monad.State (MonadState, State, modify)
+> 
+> -- Needed for compilation
+> main :: IO ()
+> main = return ()
 
 - Often would like to combine two monads into one:
   - Stateful + non-deterministic computations (`State` + `[]`)
