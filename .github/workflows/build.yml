@@ -32,6 +32,7 @@ jobs:
         run: |
           cabal update
           cabal install pandoc-2.16.1 markdown-unlit-0.5.1
+          cabal install --lib mtl-2.2.2
 
       - name: Run build
         run: ./build.sh
@@ -41,5 +42,5 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add ./doc
-          git commit -m "Built chapter $(echo ${GITHUB_REF##*/} | sed -r 's/(^|_)([a-z])/\U\2/g')"
+          git commit -m "Built chapter $(echo ${{ github.event.pull_request.head.ref }} | sed -r 's/(^|_)([a-z])/\U\2/g')"
           git push

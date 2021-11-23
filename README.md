@@ -9,6 +9,7 @@ I have written up the notes and solutions I made following the Haskell Typeclass
 * [Applicative](doc/Applicative.md)
 * [Monad](doc/Monad.md)
 * [MonadFail](doc/MonadFail.md)
+* [Monad Transformers](doc/MonadTransformers.md)
 
 
 ## Requirements
