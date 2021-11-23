@@ -410,7 +410,7 @@ of the above laws and the usual monad laws.
 
 </div>
 
-## Do-Notation
+## `do`-Notation
 
 -   Syntactic sugar for chains of monadic expressions, that allows
     writing them as steps in an imperative style
@@ -443,7 +443,7 @@ do {
 -}
 ```
 
--   `do` blocks are recursively translated into monad operations
+-   `do`-blocks are recursively translated into monad operations
     approximately by the following rules:
     -   `do e -> e`
     -   `do { e; stmts } -> e >> do { stmts }`
