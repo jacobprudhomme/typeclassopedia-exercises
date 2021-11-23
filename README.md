@@ -13,6 +13,7 @@ I have written up the notes and solutions I made following the Haskell Typeclass
 * [`MonadFix`](doc/MonadFix.md)
 * [`Semigroup`](doc/Semigroup.md)
 * [`Monoid`](doc/Monoid.md)
+* [Failure and Choice](doc/FailureAndChoice.md)
 
 
 ## Requirements
