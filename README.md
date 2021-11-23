@@ -11,6 +11,7 @@ I have written up the notes and solutions I made following the Haskell Typeclass
 * [`MonadFail`](doc/MonadFail.md)
 * [Monad Transformers](doc/MonadTransformers.md)
 * [`MonadFix`](doc/MonadFix.md)
+* [`Semigroup`](doc/Semigroup.md)
 
 
 ## Requirements
