@@ -7,6 +7,7 @@ I have written up the notes and solutions I made following the Haskell Typeclass
 
 * [Functor](doc/Functor.md)
 * [Applicative](doc/Applicative.md)
+* [Monad](doc/Monad.md)
 
 
 ## Requirements
