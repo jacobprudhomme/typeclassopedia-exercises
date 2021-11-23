@@ -347,8 +347,8 @@ $$ -->
 <div align="center"><img style="background: white;" src="../svg/8Ss6iIE2Na.svg"></div>
 
 
-Do-Notation
------------
+`do`-Notation
+-------------
 
 - Syntactic sugar for chains of monadic expressions, that allows writing them as steps in an imperative style
 - Comes from fact that `a >>= \x -> b >> c >>= \y -> d` can be made more readable by putting each computation on a separate line:
@@ -373,7 +373,7 @@ Do-Notation
 > }
 > -}
 
-  - `do` blocks are recursively translated into monad operations approximately by the following rules:
+  - `do`-blocks are recursively translated into monad operations approximately by the following rules:
     - `do e -> e`
     - `do { e; stmts } -> e >> do { stmts }`
     - `do { v <- e; stmts } -> e >>= \v -> do { stmts }`
