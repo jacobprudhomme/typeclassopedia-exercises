@@ -17,6 +17,6 @@ done
 
 echo "Testing code segments to see if they typecheck"
 for FILENAME in build/*.lhs; do
-  ghc -pgmL markdown-unlit "$FILENAME"
+  ghc -Wno-missing-methods -pgmL markdown-unlit "$FILENAME"
 done
 rm -rf build
