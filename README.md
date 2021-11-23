@@ -18,6 +18,7 @@ I have written up the notes and solutions I made following the Haskell Typeclass
 ## Requirements
 
 * VSCode plugin Math to Images (to convert LaTeX math to embedded images)
+* GHC 8.10
 * Pandoc (to convert from literate source files to Markdown with code blocks)
 * markdown-unlit (to typecheck literate code)
 
