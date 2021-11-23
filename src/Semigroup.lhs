@@ -3,7 +3,7 @@
 
 > import Prelude hiding ((<>))
 > import Data.List.NonEmpty (NonEmpty(..))
-> 
+>
 > -- Needed for compilation
 > main :: IO ()
 > main = return ()
@@ -24,13 +24,13 @@ Definition
 > class Semigroup a where
 >   infixr 6 <>
 >   (<>) :: a -> a -> a
-> 
+>
 >   sconcat :: NonEmpty a -> a
 >   sconcat (a :| as) = go a as
 >     where
 >       go b (c:cs) = b <> go c cs
 >       go b []     = b
-> 
+>
 >   stimes :: Integral b => b -> a -> a
 >   stimes y0 x0
 >     | y0 <= 0   = errorWithoutStackTrace "stimes: positive multiplier expected"

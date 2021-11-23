@@ -4,7 +4,7 @@ Monad Transformers
 > {-# LANGUAGE FlexibleContexts #-}
 >
 > import Control.Monad.State (MonadState, State, modify)
-> 
+>
 > -- Needed for compilation
 > main :: IO ()
 > main = return ()

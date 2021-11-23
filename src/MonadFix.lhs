@@ -2,7 +2,7 @@
 ==========
 
 > {-# LANGUAGE InstanceSigs #-}
-> 
+>
 > -- Needed for compilation
 > main :: IO ()
 > main = return ()
@@ -82,7 +82,7 @@ Implement a `MonadFix` instance for `[]`.
 
 > class Monad m => MonadFix m where
 >   mfix :: (a -> m a) -> m a
-> 
+>
 > instance MonadFix [] where
 >   mfix :: (a -> [a]) -> [a]
 >   mfix f = xs

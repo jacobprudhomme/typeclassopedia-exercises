@@ -2,9 +2,9 @@
 ========
 
 > {-# LANGUAGE InstanceSigs #-}
-> 
+>
 > import Prelude hiding (Applicative(..), Monoid(..))
-> 
+>
 > -- Needed for compilation
 > main :: IO ()
 > main = return ()
@@ -18,7 +18,7 @@ Definition
 > class Semigroup a => Monoid a where
 >   mempty :: a
 >   mappend :: a -> a -> a
-> 
+>
 >   mconcat :: [a] -> a
 >   mconcat = foldr mappend mempty
 
@@ -56,7 +56,7 @@ Instances
 > instance Monoid [a] where
 >   mempty :: [a]
 >   mempty = []
-> 
+>
 >   mappend :: [a] -> [a] -> [a]
 >   mappend = (++)
 
@@ -64,26 +64,26 @@ Instances
 
 > newtype Sum a = Sum { getSum :: a }
 > newtype Product a = Product { getProduct :: a }
-> 
+>
 > instance Num a => Semigroup (Sum a) where
 >   (<>) :: Sum a -> Sum a -> Sum a
 >   Sum a <> Sum b = Sum (a + b)
-> 
+>
 > instance Num a => Semigroup (Product a) where
 >   (<>) :: Product a -> Product a -> Product a
 >   Product a <> Product b = Product (a * b)
-> 
+>
 > instance Num a => Monoid (Sum a) where
 >   mempty :: Sum a
 >   mempty = Sum 0
-> 
+>
 >   mappend :: Sum a -> Sum a -> Sum a
 >   mappend = (<>)
-> 
+>
 > instance Num a => Monoid (Product a) where
 >   mempty :: Product a
 >   mempty = Product 1
-> 
+>
 >   mappend :: Product a -> Product a -> Product a
 >   mappend = (<>)
 
@@ -93,26 +93,26 @@ Instances
 
 > newtype Any = Any { getAny :: Bool }
 > newtype All = All { getAll :: Bool }
-> 
+>
 > instance Semigroup Any where
 >   (<>) :: Any -> Any -> Any
 >   Any a <> Any b = Any (a || b)
-> 
+>
 > instance Semigroup All where
 >   (<>) :: All -> All -> All
 >   All a <> All b = All (a && b)
-> 
+>
 > instance Monoid Any where
 >   mempty :: Any
 >   mempty = Any False
-> 
+>
 >   mappend :: Any -> Any -> Any
 >   mappend = (<>)
-> 
+>
 > instance Monoid All where
 >   mempty :: All
 >   mempty = All True
-> 
+>
 >   mappend :: All -> All -> All
 >   mappend = (<>)
 
@@ -122,7 +122,7 @@ Instances
 > instance Semigroup a => Monoid (Maybe a) where
 >   mempty :: Maybe a
 >   mempty = Nothing
-> 
+>
 >   mappend :: Maybe a -> Maybe a -> Maybe a
 >   mappend Nothing b = b
 >   mappend a Nothing = a
@@ -132,43 +132,43 @@ Instances
 
 > newtype First a = First { getFirst :: Maybe a }
 > newtype Last a = Last { getLast :: Maybe a }
-> 
+>
 > instance Semigroup (First a) where
 >   (<>) :: First a -> First a -> First a
 >   First Nothing <> b = b
 >   a <> _             = a
-> 
+>
 > instance Semigroup (Last a) where
 >   (<>) :: Last a -> Last a -> Last a
 >   a <> Last Nothing = a
 >   _ <> b            = b
-> 
+>
 > instance Monoid (First a) where
 >   mempty :: First a
 >   mempty = First Nothing
-> 
+>
 >   mappend :: First a -> First a -> First a
 >   mappend = (<>)
-> 
+>
 > instance Monoid (Last a) where
 >   mempty :: Last a
 >   mempty = Last Nothing
-> 
+>
 >   mappend :: Last a -> Last a -> Last a
 >   mappend = (<>)
 
 - `Endo a` is a `newtype` wrapper for functions `a -> a` (endomorphisms)
 
 > newtype Endo a = Endo { getEndo :: a -> a }
-> 
+>
 > instance Semigroup (Endo a) where
 >   (<>) :: Endo a -> Endo a -> Endo a
 >   Endo f <> Endo g = Endo (f . g)
-> 
+>
 > instance Monoid (Endo a) where
 >   mempty :: Endo a
 >   mempty = Endo id
-> 
+>
 >   mappend :: Endo a -> Endo a -> Endo a
 >   mappend = (<>)
 
@@ -178,7 +178,7 @@ Instances
 > instance (Monoid a, Monoid b) => Monoid (a,b) where
 >   mempty :: (a,b)
 >   mempty = (mempty, mempty)
-> 
+>
 >   mappend :: (a,b) -> (a,b) -> (a,b)
 >   mappend (a,b) (c,d) = (a <> c, b <> d)
 
@@ -187,7 +187,7 @@ Instances
 > instance Monoid Ordering where
 >   mempty :: Ordering
 >   mempty = EQ
-> 
+>
 >   mappend :: Ordering -> Ordering -> Ordering
 >   mappend LT _ = LT
 >   mappend EQ x = x
@@ -202,23 +202,23 @@ Instances
 
 > class Functor f => Applicative f where
 >   pure :: a -> f a
-> 
+>
 >   infixl 4 <*>, *>, <*
 >   (<*>) :: f (a -> b) -> f a -> f b
-> 
+>
 >   liftA2 :: (a -> b -> c) -> f a -> f b -> f c
 >   liftA2 f x = (<*>) (fmap f x)
-> 
+>
 >   (*>) :: f a -> f b -> f b
 >   a1 *> a2 = (id <$ a1) <*> a2
-> 
+>
 >   (<*) :: f a -> f b -> f a
 >   (<*) = liftA2 const
-> 
+>
 > instance Monoid e => Applicative ((,) e) where
 >   pure :: a -> (e,a)
 >   pure x = (mempty, x)
-> 
+>
 >   (<*>) :: (e, a -> b) -> (e,a) -> (e,b)
 >   (u,f) <*> (v,x) = (u <> v, f x)
 

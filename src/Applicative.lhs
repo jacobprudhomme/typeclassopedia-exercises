@@ -140,11 +140,11 @@ Instances
 > instance Functor ZipList where
 >   fmap :: (a -> b) -> ZipList a -> ZipList b
 >   fmap f (ZipList xs) = ZipList (fmap f xs)
-> 
+>
 > instance Applicative ZipList where
 >   pure :: a -> ZipList a
 >   pure x = ZipList (repeat x)  -- See exercise question 2 for explanation
-> 
+>
 >   (<*>) :: ZipList (a -> b) -> ZipList a -> ZipList b
 >   (ZipList fs) <*> (ZipList xs) = ZipList (zipWith ($) fs xs)
 
@@ -153,7 +153,7 @@ Instances
 > instance Applicative [] where
 >   pure :: a -> [a]
 >   pure x = [x]
-> 
+>
 >   (<*>) :: [a -> b] -> [a] -> [b]
 >   fs <*> xs = [ f x | f <- fs, x <- xs ]
 
@@ -176,7 +176,7 @@ Implement an instance of `Applicative` for `Maybe`.
 > instance Applicative Maybe where
 >   pure :: a -> Maybe a
 >   pure = Just
-> 
+>
 >   (<*>) :: Maybe (a -> b) -> Maybe a -> Maybe b
 >   (Just f) <*> (Just x) = Just (f x)
 >   _ <*> _ = Nothing
@@ -276,13 +276,13 @@ Implement `pure` and `(<*>)` in terms of `unit` and `(**)`, and vice versa.
 
 > pure' :: (Applicative f, Monoidal f) => a -> f a
 > pure' x = fmap (const x) unit
-> 
+>
 > (<*>>) :: (Applicative f, Monoidal f) => f (a -> b) -> f a -> f b
 > f <*>> x = fmap (uncurry ($)) (f ** x)
-> 
+>
 > unit' :: (Applicative f, Monoidal f) => f ()
 > unit' = pure ()
-> 
+>
 > (**>) :: (Applicative f, Monoidal f) => f a -> f b -> f (a,b)
 > x **> y = (,) <$> x <*> y
 
@@ -294,13 +294,13 @@ Are there any `Applicative` instances for which there are also functions `f () -
 > instance Monoidal [] where
 >   unit :: [()]
 >   unit = [()]
-> 
+>
 >   (**) :: [a] -> [b] -> [(a,b)]
 >   (**) = zip
-> 
+>
 > reverseUnit' :: [()] -> ()
 > reverseUnit' _ = ()
-> 
+>
 > reverseStarStar' :: [(a,b)] -> ([a], [b])
 > reverseStarStar' = unzip
 

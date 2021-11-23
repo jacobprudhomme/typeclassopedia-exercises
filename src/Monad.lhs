@@ -16,12 +16,12 @@ Definition
 
 > class Applicative m => Monad m where
 >   return :: a -> m a
-> 
+>
 >   (>>=) :: m a -> (a -> m b) -> m b
-> 
+>
 >   (>>) :: m a -> m b -> m b
 >   m >> n = m >>= \_ -> n
-> 
+>
 >   -- fail :: String -> m a
 
 - Every `Monad` is an `Applicative`
@@ -39,7 +39,7 @@ Instances
 > instance Monad Identity where
 >   return :: a -> Identity a
 >   return = Identity
-> 
+>
 >   (>>=) :: Identity a -> (a -> Identity b) -> Identity b
 >   m >>= k = k (runIdentity m)
 
@@ -49,7 +49,7 @@ Instances
 > instance Monad Maybe where
 >   return :: a -> Maybe a
 >   return = Just
-> 
+>
 >   (>>=) :: Maybe a -> (a -> Maybe b) -> Maybe b
 >   Just x >>= f = f x
 >   Nothing >>= _ = Nothing
@@ -68,7 +68,7 @@ Instances
 > instance Monoid w => Monad ((,) w) where
 >   return :: a -> (w,a)
 >   return = ((,) mempty)
-> 
+>
 >   (>>=) :: (w,a) -> (a -> (w,b)) -> (w,b)
 >   (w,x) >>= f = let (w',x') = f x in (w <> w', x')
 
@@ -76,26 +76,26 @@ Instances
   - It is a computation that produces `a`, but also has a state `s` it can use and modify in the process
 
 > newtype State s a = State { runState :: s -> (a,s) }
-> 
+>
 > instance Functor (State s) where
 >   fmap :: (a -> b) -> State s a -> State s b
 >   fmap f (State sx) = State $ \s ->
 >     let (x, s') = sx s
 >     in (f x, s')
-> 
+>
 > instance Applicative (State s) where
 >   pure :: a -> State s a
 >   pure x = State $ \s -> (x, s)
-> 
+>
 >   (<*>) :: State s (a -> b) -> State s a -> State s b
 >   (State sf) <*> sx = State $ \s ->
 >     let (f, s') = sf s
 >     in runState (f <$> sx) s'
-> 
+>
 > instance Monad (State s) where
 >   return :: a -> State s a
 >   return = pure
-> 
+>
 >   (>>=) :: State s a -> (a -> State s b) -> State s b
 >   (State sx) >>= sf = State $ \s ->
 >     let (x, s') = sx s
@@ -106,22 +106,22 @@ Instances
   - Called the "mother of all monads" due to universal properties
 
 > newtype Cont r a = Cont { runCont :: (a -> r) -> r }
-> 
+>
 > instance Functor (Cont r) where
 >   fmap :: (a -> b) -> Cont r a -> Cont r b
 >   fmap f (Cont c) = Cont $ \g -> c (g . f)
-> 
+>
 > instance Applicative (Cont r) where
 >   pure :: a -> Cont r a
 >   pure x = Cont $ \f -> f x
-> 
+>
 >   (<*>) :: Cont r (a -> b) -> Cont r a -> Cont r b
 >   (Cont cFn) <*> (Cont c) = Cont $ \g -> cFn (\f -> c (g . f))
-> 
+>
 > instance Monad (Cont r) where
 >   return :: a -> Cont r a
 >   return = pure
-> 
+>
 >   (>>=) :: Cont r a -> (a -> Cont r b) -> Cont r b
 >   (Cont c) >>= f = Cont $ \g -> c (\x -> (runCont (f x)) g)
 
@@ -136,7 +136,7 @@ Implement a `Monad` instance for the list constructor, `[]`.
 > instance Monad [] where
 >   return :: a -> [a]
 >   return x = [x]
-> 
+>
 >   (>>=) :: [a] -> (a -> [b]) -> [b]
 >   [] >>= _ = []
 >   xs >>= f = concat [ f x | x <- xs ]
@@ -149,7 +149,7 @@ Implement a `Monad` instance for `((->) e)`.
 > instance Monad ((->) e) where
 >   return :: a -> (e -> a)
 >   return = const
-> 
+>
 >   (>>=) :: (e -> a) -> (a -> (e -> b)) -> (e -> b)
 >   f >>= ff = \e -> ff (f e) e
 
@@ -168,19 +168,19 @@ You may assume that `f` has a `Functor` instance. This is known as the free mona
 >   fmap :: (a -> b) -> Free f a -> Free f b
 >   fmap f (Var x) = Var (f x)
 >   fmap f (Node x) = Node $ fmap (fmap f) x
-> 
+>
 > instance Functor f => Applicative (Free f) where
 >   pure :: a -> Free f a
 >   pure = Var
-> 
+>
 >   (<*>) :: Free f (a -> b) -> Free f a -> Free f b
 >   (Var f) <*> x = fmap f x
 >   (Node f) <*> x = Node $ fmap (<*> x) f
-> 
+>
 > instance Functor f => Monad (Free f) where
 >   return :: a -> Free f a
 >   return = pure
-> 
+>
 >   (>>=) :: Free f a -> (a -> Free f b) -> Free f b
 >   (Var x) >>= f = f x
 >   (Node x) >>= f = Node $ fmap (>>= f) x
@@ -228,7 +228,7 @@ Implement `join` and `fmap` (`liftM`) in terms of `(>>=)` and `return`.
 
 > join' :: Monad m => m (m a) -> m a
 > join' x = x >>= id
-> 
+>
 > fmap' :: Monad f => (a -> b) -> f a -> f b
 > fmap' f fx = fx >>= (\x -> return (f x))
 
