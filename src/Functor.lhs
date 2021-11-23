@@ -2,9 +2,9 @@
 =========
 
 > {-# LANGUAGE InstanceSigs #-}
-> 
+>
 > import Prelude hiding (Functor(..))
-> 
+>
 > -- Needed for compilation
 > main :: IO ()
 > main = return ()
@@ -15,7 +15,7 @@ Definition
 
 > class Functor f where
 >   fmap :: (a -> b) -> f a -> f b
-> 
+>
 >   infixl 4 <$
 >   (<$) :: a -> f b -> f a
 >   (<$) = fmap . const
@@ -34,7 +34,7 @@ Some basic instances for `Functor`:
 >   fmap :: (a -> b) -> [a] -> [b]
 >   fmap _ [] = []
 >   fmap f (x:xs) = f x : fmap f xs
-> 
+>
 > instance Functor Maybe where
 >   fmap :: (a -> b) -> Maybe a -> Maybe b
 >   fmap _ Nothing = Nothing
@@ -43,7 +43,7 @@ Some basic instances for `Functor`:
 Data types needed for some of the exercises:
 
 > data Pair a = Pair a a
-> 
+>
 > data ITree a
 >   = Leaf (Int -> a)
 >   | Node [ITree a]
@@ -60,7 +60,7 @@ Implement `Functor` instances for `(Either e)` and `((->) e)`.
 >   fmap :: (a -> b) -> Either e a -> Either e b
 >   fmap _ (Left e) = Left e
 >   fmap f (Right x) = Right (f x)
-> 
+>
 > instance Functor ((->) e) where
 >   fmap :: (a -> b) -> (e -> a) -> (e -> b)
 >   fmap f g = f . g
@@ -73,7 +73,7 @@ Implement `Functor` instances for `((,) e)` and `Pair`. Explain their similariti
 > instance Functor ((,) e) where
 >   fmap :: (a -> b) -> (e,a) -> (e,b)
 >   fmap f (x,y) = (x, f y)
-> 
+>
 > instance Functor Pair where
 >   fmap :: (a -> b) -> Pair a -> Pair b
 >   fmap f (Pair x y) = Pair (f x) (f y)
@@ -114,7 +114,7 @@ If false, give a counterexample; if true, prove it by exhibiting some appropriat
 ---
 
 > newtype FunctorComposition f g a = FunctorComposition (f (g a))
-> 
+>
 > instance (Functor f, Functor g) => Functor (FunctorComposition f g) where
 >   fmap f (FunctorComposition x) = FunctorComposition $ fmap (fmap f) x
 
@@ -146,7 +146,7 @@ $$ -->
 - A `Functor` instance that does not satisfy the functor laws:
 
 > data List a = Empty | Cons a (List a)  -- A copy of []
-> 
+>
 > instance Functor List where
 >   fmap :: (a -> b) -> List a -> List b
 >   fmap _ Empty = Empty
@@ -162,7 +162,7 @@ Give an example of a (bogus) `Functor` instance which satisfies the second law b
 ---
 
 > data Optional a = None | Some a  -- A copy of Maybe
-> 
+>
 > instance Functor Optional where
 >   fmap :: (a -> b) -> Optional a -> Optional b
 >   fmap _ _ = None
