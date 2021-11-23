@@ -14,6 +14,7 @@ I have written up the notes and solutions I made following the Haskell Typeclass
 * [`Semigroup`](doc/Semigroup.md)
 * [`Monoid`](doc/Monoid.md)
 * [Failure and Choice](doc/FailureAndChoice.md)
+* [`Foldable`](doc/Foldable.md)
 
 
 ## Requirements
