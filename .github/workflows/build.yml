@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Install GHC and Cabal
         id: install-ghc-cabal
@@ -33,3 +35,11 @@ jobs:
 
       - name: Run build
         run: ./build.sh
+
+      - name: Commit and push output chapters
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add ./doc
+          git commit -m "Built chapter $(echo ${GITHUB_REF##*/} | sed -r 's/(^|_)([a-z])/\U\2/g')"
+          git push
