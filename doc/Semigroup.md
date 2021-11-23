@@ -50,12 +50,12 @@ class Semigroup a where
 -   `(<>)` is the binary operation
 -   The other methods have default implementations that use `(<>)`
     -   `sconcat` folds a non-empty list with `(<>)`
-        -   Mostly like `foldr1 (<>)` except for idempotent semigroups
+        -   Mostly like `foldr1 (<>)` except for idempotent `Semigroup`s
             where it is constant-time
     -   `stimes n` is equivalent to `sconcat . replicate n`, but uses
         exponentiation by squaring
-        -   Can be a great `O(logn)` optimization for some semigroups
-        -   For some semigroups, like lists, it is terrible and is
+        -   Can be a great `O(logn)` optimization for some `Semigroup`s
+        -   For some `Semigroup`s, like lists, it is terrible and is
             better being overridden
 
 ## Laws
