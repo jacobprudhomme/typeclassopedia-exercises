@@ -18,6 +18,7 @@ I have written up the notes and solutions I made following the Haskell Typeclass
 * [`Traversable`](doc/Traversable.md)
 * [`Bifunctor`](doc/Bifunctor.md)
 * [`Category`](doc/Category.md)
+* [`Arrow`](doc/Arrow.md)
 
 Throughout the documents, I use a Capitalized and `monospaced` version of typeclass names to describe the Haskell typeclass (e.g. `Maybe` is an instance of `Monad`), and the original word to describe the theoretical or mathematical concept (e.g. associativity is a monad law). I try to be as consistent as possible, but sometimes I forget, and some instances may be ambiguous or difficult to differentiate.
 
