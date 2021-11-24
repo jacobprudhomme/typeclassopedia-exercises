@@ -18,6 +18,7 @@ I have written up the notes and solutions I made following the Haskell Typeclass
 * [`Traversable`](doc/Traversable.md)
 * [`Bifunctor`](doc/Bifunctor.md)
 * [`Category`](doc/Category.md)
+* [`Arrow`](doc/Arrow.md)
 
 Throughout the documents, I use a Capitalized and `monospaced` version of typeclass names to describe the Haskell typeclass (e.g. `Maybe` is an instance of `Monad`), and the original word to describe the theoretical or mathematical concept (e.g. associativity is a monad law). I try to be as consistent as possible, but sometimes I forget, and some instances may be ambiguous or difficult to differentiate.
 
@@ -42,3 +43,10 @@ Throughout the documents, I use a Capitalized and `monospaced` version of typecl
 ## NOTE
 
 Markdown syntax highlighting seems quite a bit better than the Literate Haskell one (it technically doesn't support writing literate files in Markdown), so I recommend setting `*.lhs` files to use the Markdown language association for the workspace. It also allows for conveniences, such as using the rendered preview offered by the Markdown All in One extension.
+
+
+## Todo
+
+* Normalize presentation of laws (some use LaTeX, some use Markdown)
+* Add laws where applicable (for example, `ArrowLoop` has many laws that are not mentioned in the Typeclassopedia, but are in the documentation)
+* Check over rendered documents to make sure everything is consistent
