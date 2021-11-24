@@ -19,6 +19,7 @@ I have written up the notes and solutions I made following the Haskell Typeclass
 * [`Bifunctor`](doc/Bifunctor.md)
 * [`Category`](doc/Category.md)
 * [`Arrow`](doc/Arrow.md)
+* [`Comonad`](doc/Comonad.md)
 
 Throughout the documents, I use a Capitalized and `monospaced` version of typeclass names to describe the Haskell typeclass (e.g. `Maybe` is an instance of `Monad`), and the original word to describe the theoretical or mathematical concept (e.g. associativity is a monad law). I try to be as consistent as possible, but sometimes I forget, and some instances may be ambiguous or difficult to differentiate.
 
@@ -50,3 +51,4 @@ Markdown syntax highlighting seems quite a bit better than the Literate Haskell 
 * Normalize presentation of laws (some use LaTeX, some use Markdown)
 * Add laws where applicable (for example, `ArrowLoop` has many laws that are not mentioned in the Typeclassopedia, but are in the documentation)
 * Check over rendered documents to make sure everything is consistent
+* Maybe find a better way to build and typecheck the documents (for example, use [`lhs2tex`](https://github.com/kosmikus/lhs2tex) and convert the LaTeX output to Markdown somehow, like with [`latex-to-internet`](https://github.com/loopspace/latex-to-internet). Or, wait until GHC [natively supports Literate Markdown](https://gitlab.haskell.org/ghc/ghc/-/wikis/literate-markdown))
