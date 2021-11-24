@@ -43,3 +43,10 @@ Throughout the documents, I use a Capitalized and `monospaced` version of typecl
 ## NOTE
 
 Markdown syntax highlighting seems quite a bit better than the Literate Haskell one (it technically doesn't support writing literate files in Markdown), so I recommend setting `*.lhs` files to use the Markdown language association for the workspace. It also allows for conveniences, such as using the rendered preview offered by the Markdown All in One extension.
+
+
+## Todo
+
+* Normalize presentation of laws (some use LaTeX, some use Markdown)
+* Add laws where applicable (for example, `ArrowLoop` has many laws that are not mentioned in the Typeclassopedia, but are in the documentation)
+* Check over rendered documents to make sure everything is consistent
